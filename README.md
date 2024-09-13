@@ -1,5 +1,8 @@
 <div align="center">
-    <h1>Amber</h1>
+   
+<img src="https://github.com/user-attachments/assets/17ab86a1-5f51-49e6-b4b0-86d5ccd7de28" width="250" alt="logo" />
+    
+ <h1>Amber</h1>
     <p> Amber is a custom made Neural Network library written in Python. I am build this libray to learn more about Neural Networks and how they work. Maybe in the future I will use this library to build some cool projects.
     </p>
 </div>
