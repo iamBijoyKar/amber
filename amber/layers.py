@@ -1,31 +1,31 @@
 import numpy as np
 from .utils import generate_weights, generate_bias
-from .nurons import Neuron
+from .neurons import Neuron
 
 class InputLayer:
-    def __init__(self,nurons:int):
-        self.nurons = []
-        self.output_length = nurons
-        for _ in range(nurons):
-            new_nuron = Neuron() 
-            self.nurons.append(new_nuron)
+    def __init__(self,neurons:int):
+        self.neurons = []
+        self.output_length = neurons
+        for _ in range(neurons):
+            new_neuron = Neuron() 
+            self.neurons.append(new_neuron)
         
     def __repr__(self) -> str:
-        return f'<amber.Layers.InputLayer nurons={len(self.nurons)} >'
+        return f'<amber.Layers.InputLayer neurons={len(self.neurons)} >'
     
     def forward(self,inputs:list[float]):
-        if len(inputs) != len(self.nurons):
-            raise ValueError(f'Inappropriate input size given at {self.__repr__} layer. Given size is {np.array(inputs).shape} but required is ({len(self.nurons)})')
+        if len(inputs) != len(self.neurons):
+            raise ValueError(f'Inappropriate input size given at {self.__repr__} layer. Given size is {np.array(inputs).shape} but required is ({len(self.neurons)})')
         outputs = []
         for i in range(len(inputs)):
-            outputs.append(self.nurons[i].forward(inputs,idx=i))
+            outputs.append(self.neurons[i].forward(inputs,idx=i))
         return np.array(outputs)
     
 
 class Dense:
-    def __init__(self,nurons:int,activation=None):
-        self.nurons = []
-        self.output_length = nurons
+    def __init__(self,neurons:int,activation=None):
+        self.neurons = []
+        self.output_length = neurons
         self.input_length = None
         self.activation = activation
 
@@ -36,19 +36,19 @@ class Dense:
         for _ in range(self.output_length):
             weights = generate_weights(self.input_length)
             bias = generate_bias()
-            new_nuron = Neuron(weights,bias,activation=self.activation) 
-            self.nurons.append(new_nuron)
+            new_neuron = Neuron(weights,bias,activation=self.activation) 
+            self.neurons.append(new_neuron)
 
 
     def __repr__(self) -> str:
-        return f'<amber.Layers.Dense nurons={len(self.nurons)} >'
+        return f'<amber.Layers.Dense neurons={len(self.neurons)} >'
     
     def forward(self,inputs:list[float]):
         if self.input_length == None:
             raise RuntimeError(f'The model {self.__repr__} is uncompiled, compile it before run.')
         outputs = []
-        for i in range(len(self.nurons)):
-            outputs.append(self.nurons[i].forward(inputs))
+        for i in range(len(self.neurons)):
+            outputs.append(self.neurons[i].forward(inputs))
 
         return np.array(outputs)
     
