@@ -51,3 +51,20 @@ class Dense:
             outputs.append(self.nurons[i].forward(inputs))
 
         return np.array(outputs)
+    
+
+class SoftMax:
+    def __init__(self) -> None:
+        self.input_length = None
+        self.output_length = None
+
+    def compile(self,input_length):
+        self.input_length = input_length
+        self.output_length = input_length
+
+    def forward(self,inputs:list[float]):
+        if self.input_length == None:
+            raise RuntimeError(f'The model {self.__repr__} is uncompiled, compile it before run.')
+        inputs_sum = np.sum(inputs)
+        output = [i / inputs_sum for i in inputs]
+        return np.array(output)

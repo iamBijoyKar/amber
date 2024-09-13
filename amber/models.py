@@ -1,4 +1,4 @@
-from .layers import InputLayer, Dense
+from .layers import InputLayer, Dense, SoftMax
 
 class Model:
     def __init__(self,layers:list):
@@ -7,7 +7,7 @@ class Model:
                 if not isinstance(layers[i],InputLayer):
                     raise TypeError(f'The first layer should be a <amber.layers.InputLayer> but recieved {type(layers[i])}')
             else:
-                if not isinstance(layers[i],Dense):
+                if not isinstance(layers[i],Dense) and not isinstance(layers[i],SoftMax) :
                     raise TypeError(f'The first layer should be a <amber.layers.Dense> but recieved {type(layers[i])}')
         self.layers = layers
 
