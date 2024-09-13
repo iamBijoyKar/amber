@@ -23,17 +23,20 @@ class InputLayer:
     
 
 class Dense:
-    def __init__(self,nurons:int):
+    def __init__(self,nurons:int,activation=None):
         self.nurons = []
         self.output_length = nurons
         self.input_length = None
+        self.activation = activation
 
     def compile(self,input_length):
         self.input_length = input_length
+        if self.activation != 'relu' and self.activation != 'sigmoid':
+            raise ValueError(f'Invalid activation function. Given {self.activation} but expected `relu` or `sigmoid`.')
         for _ in range(self.output_length):
             weights = generate_weights(self.input_length)
             bias = generate_bias()
-            new_nuron = Neuron(weights,bias) 
+            new_nuron = Neuron(weights,bias,activation=self.activation) 
             self.nurons.append(new_nuron)
 
 
