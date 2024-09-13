@@ -49,5 +49,5 @@ class Dense:
         outputs = []
         for i in range(len(self.nurons)):
             outputs.append(self.nurons[i].forward(inputs))
-        print(outputs)
+
         return np.array(outputs)
