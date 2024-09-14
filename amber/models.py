@@ -1,5 +1,6 @@
 from .layers import InputLayer, Dense, SoftMax
-from .loss import categorical_cross_entropy
+from .loss import categorical_cross_entropy, binary_cross_entropy
+from .utils import LOSS_FUNCS
 
 class Model:
     def __init__(self,layers:list):
@@ -15,9 +16,16 @@ class Model:
         self.outputs = []
         self.true_outputs = []
         self.loss = None
+        self.loss_func = None
 
 
-    def compile(self):
+    def compile(self,loss_func='categorical_cross_entropy_loss'):
+        if loss_func not in LOSS_FUNCS:
+            raise ValueError(f'Invalid Loss Function recieved!')
+        if loss_func == LOSS_FUNCS[0]:
+            self.loss_func = categorical_cross_entropy
+        elif loss_func == LOSS_FUNCS[1]:
+            self.loss_func = binary_cross_entropy
         output_length = self.layers[0].output_length
         for i in range(1,len(self.layers)):
             self.layers[i].compile(output_length)
@@ -37,7 +45,7 @@ class Model:
         if len(true_outputs) != len(self.outputs):
             raise ValueError(f'Invalid shape recieved! Given ({len(true_outputs)},) , expected ({len(self.outputs)},)')
         self.true_outputs = true_outputs
-        loss =  categorical_cross_entropy(self.outputs,self.true_outputs)
+        loss =  self.loss_func(self.outputs,self.true_outputs)
         self.loss = loss
         return loss
     
