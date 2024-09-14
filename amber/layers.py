@@ -3,10 +3,11 @@ from .utils import generate_weights, generate_bias
 from .neurons import Neuron
 
 class InputLayer:
-    def __init__(self,neurons:int):
+    def __init__(self,input_length:int):
+        self.input_length = input_length
         self.neurons = []
-        self.output_length = neurons
-        for _ in range(neurons):
+        self.output_length = input_length
+        for _ in range(input_length):
             new_neuron = Neuron() 
             self.neurons.append(new_neuron)
         
