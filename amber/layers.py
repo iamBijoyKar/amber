@@ -67,5 +67,5 @@ class SoftMax:
         if self.input_length == None:
             raise RuntimeError(f'The model {self.__repr__} is uncompiled, compile it before run.')
         inputs_sum = np.sum(inputs)
-        output = [i / inputs_sum for i in inputs]
+        output = [i / inputs_sum if inputs_sum != 0 and i != 0 else 1 for i in inputs]
         return np.array(output)
