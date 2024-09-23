@@ -19,7 +19,7 @@ class Model:
         self.loss_func = None
 
 
-    def compile(self,loss_func='categorical_cross_entropy_loss'):
+    def compile(self,loss_func='categorical_cross_entropy'):
         if loss_func not in LOSS_FUNCS:
             raise ValueError(f'Invalid Loss Function recieved!')
         if loss_func == LOSS_FUNCS[0]:

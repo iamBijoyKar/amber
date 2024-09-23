@@ -10,4 +10,4 @@ def generate_weights(num:int):
 def generate_bias():
     return random.random()*random.choice([-1,1])
 
-LOSS_FUNCS = ['categorical_cross_entropy_loss','binary_cross_entropy_loss']
+LOSS_FUNCS = ['categorical_cross_entropy','binary_cross_entropy']
