@@ -1,5 +1,5 @@
 from .layers import InputLayer, Dense, SoftMax
-from .loss import categorical_cross_entropy, binary_cross_entropy
+from .loss import categorical_cross_entropy, binary_cross_entropy, square_cost
 from .utils import LOSS_FUNCS
 
 class Model:
@@ -26,6 +26,8 @@ class Model:
             self.loss_func = categorical_cross_entropy
         elif loss_func == LOSS_FUNCS[1]:
             self.loss_func = binary_cross_entropy
+        elif loss_func == LOSS_FUNCS[2]:
+            self.loss_func = square_cost
         output_length = self.layers[0].output_length
         for i in range(1,len(self.layers)):
             self.layers[i].compile(output_length)
