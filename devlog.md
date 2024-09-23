@@ -1,6 +1,17 @@
 <h1 align="center">DevLog</h1>
 
 
+## 2024-09-23
+
+### Changes
+- [x] Added `square_cost`  loss function in `loss.py` 
+- [x] Upadated loss functions names in for passing arguments
+
+### Challenges Faced
+- [x] Don't know why `square_cost` is giving `6.0` as loss for quite often (the weights, biases are random, so the loss should be random too, but why!!!)
+- [ ] Nothing else for now.
+
+
 ## 2024-09-14
 
 ### Changes
