@@ -6,3 +6,9 @@
 /venv/
 /.venv/
 /.env/
+
+# local files
+*.local.py
+*.local.yml
+*.local.json
+*.local.env
